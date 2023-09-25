@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+android
+ios
+
 # production
 /build
 
