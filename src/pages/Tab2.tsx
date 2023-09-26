@@ -1,11 +1,13 @@
 // Tab2.tsx
 import React, {useEffect} from 'react';
-import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton} from '@ionic/react';
+import {IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import {observer} from 'mobx-react';
 import {mapStore} from '../stores/MapStore'; // Import your Mobx store
 import './Tab2.css';
 import MapComponent from "./MapComponent";
-
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon-2x.png";
+import "leaflet/dist/images/marker-icon.png";
 
 const Tab2: React.FC = observer(() => {
 
@@ -16,12 +18,17 @@ const Tab2: React.FC = observer(() => {
     const handleReset = () => {
         mapStore.setDeviceLocation(null);
         mapStore.setIssLocation(null);
+        mapStore.fetch();
     };
 
 
-    // show progress bar if not loaded
     if (!mapStore.dataLoaded) {
-        return ("Loading...");
+        return (
+            <IonContent fullscreen>
+                <div>"Loading..."</div>
+                <IonButton onClick={handleReset}>Reset</IonButton>
+            </IonContent>
+        );
     }
 
     return (
@@ -37,13 +44,15 @@ const Tab2: React.FC = observer(() => {
                         <IonTitle size="large">Map</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <MapComponent />
+                <MapComponent/>
 
                 <div>
-                    Device Location: {mapStore.deviceLocation ? `${mapStore.deviceLocation.longitude}, ${mapStore.deviceLocation.latitude}` : 'Loading...'}
+                    Device
+                    Location: {mapStore.deviceLocation ? `${mapStore.deviceLocation.longitude}, ${mapStore.deviceLocation.latitude}` : 'Loading...'}
                 </div>
                 <div>
-                    ISS Location: {mapStore.issLocation ? `${mapStore.issLocation.longitude}, ${mapStore.issLocation.latitude}` : 'Loading...'}
+                    ISS
+                    Location: {mapStore.issLocation ? `${mapStore.issLocation.longitude}, ${mapStore.issLocation.latitude}` : 'Loading...'}
                 </div>
                 <IonButton onClick={handleReset}>Reset</IonButton>
             </IonContent>
