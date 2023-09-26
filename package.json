@@ -27,10 +27,12 @@
     "@types/react-router-dom": "^5.3.3",
     "firebase": "^10.4.0",
     "ionicons": "^7.0.0",
+    "leaflet": "^1.9.4",
     "mobx": "^6.10.2",
     "mobx-react": "^9.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4"
   },
