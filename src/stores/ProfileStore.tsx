@@ -39,6 +39,7 @@ class ProfileStore {
             });
 
 
+
             console.log('Profile data saved successfully');
             return true;
         } catch (error) {

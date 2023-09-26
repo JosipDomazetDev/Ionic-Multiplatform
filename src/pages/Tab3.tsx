@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {observer} from 'mobx-react';
-import {profileStore} from './ProfileStore';
+import {profileStore} from '../stores/ProfileStore';
 import './Tab4.css';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
