@@ -3,13 +3,13 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAHGV9qTJohsc-F8v_s2-I9XTkk6iekUg4",
-    authDomain: "cross2-b8a5f.firebaseapp.com",
-    projectId: "cross2-b8a5f",
-    storageBucket: "cross2-b8a5f.appspot.com",
-    messagingSenderId: "596782335367",
-    appId: "1:596782335367:web:b5dac77026cf69c87c3f22",
-    measurementId: "G-716KL8N7LG"
+    apiKey: "AIzaSyAdRgmf66XtlEx1Z97u04Itp9N0O-SzBQ8",
+    authDomain: "cross-ionic.firebaseapp.com",
+    projectId: "cross-ionic",
+    storageBucket: "cross-ionic.appspot.com",
+    messagingSenderId: "191319058698",
+    appId: "1:191319058698:web:428f3ff8e5bb25862032f3",
+    measurementId: "G-7H9W11FL08"
 };
 
 const app = initializeApp(firebaseConfig);

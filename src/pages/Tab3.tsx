@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {observer} from 'mobx-react';
 import {profileStore} from '../stores/ProfileStore';
 import './Tab4.css';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
-
 
 import {
     IonButton,
@@ -11,12 +9,14 @@ import {
     IonHeader,
     IonInput,
     IonItem,
-    IonLabel,
+    IonLabel, IonLoading,
     IonPage,
     IonText,
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
+
+
 
 const Tab3: React.FC = observer(() => {
     const [isSaving, setIsSaving] = useState(false);
@@ -26,6 +26,7 @@ const Tab3: React.FC = observer(() => {
     useEffect(() => {
         profileStore.loadProfileFromFirebase();
     }, []);
+
 
     const handleSaveProfile = async () => {
         setIsSaving(true);
@@ -47,6 +48,11 @@ const Tab3: React.FC = observer(() => {
         }
     };
 
+    if (!profileStore._currentUser) {
+        return (
+            <IonLoading isOpen={true} message={'Loading...'}/>
+        );
+    }
 
     return (
         <IonPage>
@@ -60,32 +66,36 @@ const Tab3: React.FC = observer(() => {
                     <IonItem>
                         <IonLabel position="floating">Name:</IonLabel>
                         <IonInput
+                            aria-label="Name"
                             type="text"
-                            value={profileStore.name}
+                            value={profileStore._currentUser.name}
                             onIonChange={(e) => profileStore.updateProfileField('name', e.detail.value!)}
                         ></IonInput>
                     </IonItem>
                     <IonItem>
                         <IonLabel position="floating">Address:</IonLabel>
                         <IonInput
+                            aria-label="Address"
                             type="text"
-                            value={profileStore.address}
+                            value={profileStore._currentUser.address}
                             onIonChange={(e) => profileStore.updateProfileField('address', e.detail.value!)}
                         ></IonInput>
                     </IonItem>
                     <IonItem>
                         <IonLabel position="floating">E-Mail:</IonLabel>
                         <IonInput
+                            aria-label="E-Mail"
                             type="text"
-                            value={profileStore.email}
+                            value={profileStore._currentUser.email}
                             onIonChange={(e) => profileStore.updateProfileField('email', e.detail.value!)}
                         ></IonInput>
                     </IonItem>
                     <IonItem>
                         <IonLabel position="floating">Profile Picture:</IonLabel>
                         <IonInput
+                            aria-label="Profile Picture"
                             type="text"
-                            value={profileStore.profilePicture}
+                            value={profileStore._currentUser.profilePicture}
                             onIonChange={(e) =>
                                 profileStore.updateProfileField('profilePicture', e.detail.value!)
                             }
