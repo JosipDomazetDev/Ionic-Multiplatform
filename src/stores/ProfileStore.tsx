@@ -4,12 +4,6 @@ import {addDoc, collection, doc, getDocs, updateDoc} from "firebase/firestore";
 import db from "../firebaseConfig";
 
 
-export interface Note {
-    title: string;
-    description: string;
-    id?: string;
-}
-
 export interface User {
     name: string;
     address: string;
@@ -19,7 +13,6 @@ export interface User {
 }
 
 class ProfileStore {
-    _notes: Note;
     _currentUser: User;
 
     constructor() {

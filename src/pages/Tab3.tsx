@@ -7,15 +7,17 @@ import {
     IonButton,
     IonContent,
     IonHeader,
+    IonIcon,
     IonInput,
     IonItem,
-    IonLabel, IonLoading,
+    IonLabel,
+    IonLoading,
     IonPage,
     IonText,
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
-
+import {createOutline} from "ionicons/icons";
 
 
 const Tab3: React.FC = observer(() => {
@@ -54,6 +56,21 @@ const Tab3: React.FC = observer(() => {
         );
     }
 
+    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const base64String = event.target?.result as string;
+                profileStore.updateProfileField('profilePicture', base64String);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <IonPage>
             <IonHeader>
@@ -63,6 +80,34 @@ const Tab3: React.FC = observer(() => {
             </IonHeader>
             <IonContent>
                 <form>
+                    <div className="profile-picture-container">
+                        {profileStore._currentUser.profilePicture && (
+                            <img
+                                className="profile-picture"
+                                src={profileStore._currentUser.profilePicture}
+                                alt="Profile Picture"
+                            />
+                        )}
+                        {profileStore._currentUser.profilePicture ? (
+                                <label htmlFor="file-upload" className="edit-button" onClick={() => handleFileUpload}>
+                                    <IonIcon size={"medium"} icon={createOutline}></IonIcon>
+                                </label>
+                            ) :
+                            <label htmlFor="file-upload" className="initial-upload-button"
+                                   onClick={() => handleFileUpload}>
+                                Upload Picture
+                            </label>
+                        }
+
+                        <input
+                            id="file-upload"
+                            type="file"
+                            accept="image/*"
+                            style={{display: 'none'}}
+                            onChange={(e) => handleFileUpload(e)}
+                        />
+                    </div>
+
                     <IonItem>
                         <IonLabel position="floating">Name:</IonLabel>
                         <IonInput
@@ -90,18 +135,8 @@ const Tab3: React.FC = observer(() => {
                             onIonChange={(e) => profileStore.updateProfileField('email', e.detail.value!)}
                         ></IonInput>
                     </IonItem>
-                    <IonItem>
-                        <IonLabel position="floating">Profile Picture:</IonLabel>
-                        <IonInput
-                            aria-label="Profile Picture"
-                            type="text"
-                            value={profileStore._currentUser.profilePicture}
-                            onIonChange={(e) =>
-                                profileStore.updateProfileField('profilePicture', e.detail.value!)
-                            }
-                        ></IonInput>
-                    </IonItem>
-                    <IonButton onClick={handleSaveProfile} expand="full" disabled={isSaving}>
+
+                    <IonButton fill="outline" id="saveButton" onClick={handleSaveProfile} disabled={isSaving}>
                         {isSaving ? 'Saving...' : 'Save Profile'}
                     </IonButton>
                     {successMessage && <IonText color="success">{successMessage}</IonText>}
