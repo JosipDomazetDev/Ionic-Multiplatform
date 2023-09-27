@@ -2,30 +2,29 @@ import React from 'react';
 import {MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet';
 import {observer} from 'mobx-react';
 import {mapStore} from '../stores/MapStore';
+import {useIonViewDidEnter} from "@ionic/react";
 
 const MapComponent = observer(() => {
     const deviceLocation = mapStore.deviceLocation;
     const issLocation = mapStore.issLocation;
 
-    function UpdateSize() {
-        const map = useMap()
-
-        setTimeout(() => {
-            map.invalidateSize();
-        }, 1000);
-
-
-        return (
-            ""
-        );
-    }
-
+    useIonViewDidEnter(() => {
+        window.dispatchEvent(new Event('resize'));
+    });
 
     return ((
         <div className="map-container">
-            <MapContainer center={[deviceLocation?.latitude, deviceLocation?.longitude]} zoom={2}
-                          scrollWheelZoom={false} width="200">
-                <TileLayer
+            <MapContainer
+                center={[deviceLocation?.latitude, deviceLocation?.longitude]}
+                zoom={2}
+                scrollWheelZoom={false}
+                dragging={false}
+                doubleClickZoom={false}
+                zoomControl={false}
+                touchZoom={false}
+            >
+
+            <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
@@ -43,7 +42,6 @@ const MapComponent = observer(() => {
                         </Popup>
                     </Marker>
                 )}
-                <UpdateSize/>
             </MapContainer>
         </div>
     ));

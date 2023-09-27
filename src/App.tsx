@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import {ellipse, home, information, informationCircle, map, person, square, triangle} from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -61,20 +61,20 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Home</IonLabel>
+            <IonIcon aria-hidden="true" icon={home} />
+            <IonLabel></IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Map</IonLabel>
+            <IonIcon aria-hidden="true" icon={map} />
+            <IonLabel></IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Profile</IonLabel>
+            <IonIcon aria-hidden="true" icon={person} />
+            <IonLabel></IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab4" href="/tab4">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>About</IonLabel>
+            <IonIcon aria-hidden="true" icon={informationCircle} />
+            <IonLabel></IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
