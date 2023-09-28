@@ -1,16 +1,12 @@
 // Tab2.tsx
 import React, {useEffect} from 'react';
-import {IonButton, IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar} from '@ionic/react';
+import {IonButton, IonContent, IonHeader, IonLoading, IonPage, IonText, IonTitle, IonToolbar} from '@ionic/react';
 import {observer} from 'mobx-react';
 import {mapStore} from '../stores/MapStore'; // Import your Mobx store
 import './Tab2.css';
 import MapComponent from "./MapComponent";
-import "leaflet/dist/images/marker-shadow.png";
-import "leaflet/dist/images/marker-icon-2x.png";
-import "leaflet/dist/images/marker-icon.png";
 
 const Tab2: React.FC = observer(() => {
-
     useEffect(() => {
         mapStore.fetch();
     }, []);
@@ -21,6 +17,15 @@ const Tab2: React.FC = observer(() => {
         mapStore.fetch();
     };
 
+    if (mapStore.error != "") {
+        return (
+            <IonContent fullscreen>
+                <IonText color="danger">{mapStore.error}</IonText>
+                <br/>
+                <IonButton onClick={handleReset}>Reset</IonButton>
+            </IonContent>
+        );
+    }
 
     if (!mapStore.dataLoaded) {
         return (
@@ -30,6 +35,7 @@ const Tab2: React.FC = observer(() => {
             </IonContent>
         );
     }
+
 
     return (
         <IonPage>

@@ -3,6 +3,13 @@ import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import {observer} from 'mobx-react';
 import {mapStore} from '../stores/MapStore';
 import {useIonViewDidEnter} from "@ionic/react";
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon-2x.png";
+import "leaflet/dist/images/marker-icon.png";
+import 'leaflet/dist/leaflet.css'
+import satPng from "../../resources/sat.png"
+import currentPosPng from "../../resources/here.png"
+import { icon } from "leaflet";
 
 const MapComponent = observer(() => {
     const deviceLocation = mapStore.deviceLocation;
@@ -11,6 +18,18 @@ const MapComponent = observer(() => {
     useIonViewDidEnter(() => {
         window.dispatchEvent(new Event('resize'));
     });
+
+    const satIcon = icon({
+        iconUrl: satPng,
+        iconSize: [40, 40]
+    });
+
+    const currentPosIcon = icon({
+        iconUrl: currentPosPng,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+    });
+
 
     return ((
         <div className="map">
@@ -31,14 +50,14 @@ const MapComponent = observer(() => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {deviceLocation && (
-                    <Marker position={[deviceLocation.latitude, deviceLocation.longitude]}>
+                    <Marker position={[deviceLocation.latitude, deviceLocation.longitude]} icon={currentPosIcon}>
                         <Popup>
                             Device Location
                         </Popup>
                     </Marker>
                 )}
                 {issLocation && (
-                    <Marker position={[issLocation.latitude, issLocation.longitude]}>
+                    <Marker position={[issLocation.latitude, issLocation.longitude]} icon={satIcon}>
                         <Popup>
                             ISS Location
                         </Popup>
