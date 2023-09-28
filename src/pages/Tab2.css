@@ -1,4 +1,3 @@
-.map-container {
-    display: flex;
-    height: 200px!important;
+.map{
+    height: 100%!important;
 }
