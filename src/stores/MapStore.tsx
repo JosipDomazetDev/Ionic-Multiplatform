@@ -1,4 +1,6 @@
 import {makeAutoObservable, runInAction} from 'mobx';
+import {PermissionStatus, Position} from "@capacitor/geolocation";
+import {Geolocation} from '@capacitor/geolocation';
 
 interface DeviceLocation {
     latitude: number;
@@ -23,20 +25,21 @@ class MapStore {
     }
 
     async fetchDeviceLocation() {
-        navigator.geolocation.getCurrentPosition((position: any) => {
-            const {latitude, longitude} = position.coords;
-            const location: DeviceLocation = {latitude, longitude};
+        const coordinates = await Geolocation.getCurrentPosition();
 
-            console.log('Device location:', location);
+        let latitude = parseFloat(coordinates.coords.latitude.toFixed(6));
+        let longitude = parseFloat(coordinates.coords.longitude.toFixed(6));
+        let location: DeviceLocation = {latitude, longitude};
 
-            runInAction(() => {
-                this.setDeviceLocation(location);
+        console.log('Device location:', location);
 
-                if (this.issLocation) {
-                    this.dataLoaded = true;
-                }
-            });
 
+        runInAction(() => {
+            this.setDeviceLocation(location);
+
+            if (this.issLocation) {
+                this.dataLoaded = true;
+            }
         });
     }
 
