@@ -10,7 +10,9 @@ class SpaceStore {
 
     async fetchAstronauts() {
         try {
-            const response = await fetch('http://api.open-notify.org/astros.json');
+            const response = await fetch('http://api.open-notify.org/astros.json', {
+                referrerPolicy: "unsafe-url"
+            });
             const data = await response.json();
 
             runInAction(() => {

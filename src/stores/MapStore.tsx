@@ -84,7 +84,9 @@ class MapStore {
     }
 
     async fetchIssLocation() {
-        fetch('http://api.open-notify.org/iss-now.json')
+        fetch('http://api.open-notify.org/iss-now.json', {
+            referrerPolicy: "unsafe-url"
+        })
             .then((response) => response.json())
             .then((data) => {
                 const {iss_position} = data;
