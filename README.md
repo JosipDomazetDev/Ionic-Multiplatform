@@ -1,4 +1,11 @@
-This app is written with Ionic React Typescript. It fetches data from Firebase and also makes use of a Leaflet map.
+This app has been developed using Ionic React as part of my Cross-Platform University course. It efficiently manages
+user profile data through Firebase integration and incorporates a Leaflet map for enhanced functionality.
 
-This is app is also hosted on Netlify as a PWA. You can access it here (however all HTTP traffic is being blocked for
-security reasons): https://guileless-kitsune-35f6f3.netlify.app/tab1
+<img src="docs/previewreadme.jpg" width=60% height=60%>
+
+
+What sets this app apart is its versatility. It can be built for Android and iOS, as well as configured as a Progressive
+Web App (PWA) and an Electron Desktop application. The PWA version is hosted on Netlify, allowing easy accessibility at
+this link (note that all HTTP traffic is blocked for security
+reasons): https://guileless-kitsune-35f6f3.netlify.app/tab1
+
