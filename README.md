@@ -1,7 +1,7 @@
 This app has been developed using Ionic React as part of my Cross-Platform University course. It efficiently manages
 user profile data through Firebase integration and incorporates a Leaflet map for enhanced functionality.
 
-<img src="docs/previewreadme.jpg" width=60% height=60%>
+<img src="docs/previewreadme.png" width=60% height=60%>
 
 
 What sets this app apart is its versatility. It can be built for Android and iOS, as well as configured as a Progressive
