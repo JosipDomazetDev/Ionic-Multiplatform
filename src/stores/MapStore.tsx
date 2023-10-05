@@ -8,7 +8,10 @@ interface DeviceLocation {
 }
 
 class MapStore {
-    deviceLocation: DeviceLocation | null = null;
+    deviceLocation: DeviceLocation | null = {
+        latitude: Number(48),
+        longitude: Number(16),
+    };
     issLocation: DeviceLocation | null = null;
     dataLoaded: boolean = false;
     error: string = "";
@@ -37,6 +40,10 @@ class MapStore {
     }
 
     async fetchDeviceLocation() {
+        if (Capacitor.getPlatform() === 'electron') {
+            return;
+        }
+
         if (!Capacitor.isNativePlatform()) {
             const coordinates = await Geolocation.getCurrentPosition();
             this.saveCurrentLocation(coordinates);
