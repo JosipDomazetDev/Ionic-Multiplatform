@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
+// Don't even bother scraping this, I already disabled this firebase project
 const firebaseConfig = {
     apiKey: "AIzaSyAdRgmf66XtlEx1Z97u04Itp9N0O-SzBQ8",
     authDomain: "cross-ionic.firebaseapp.com",
