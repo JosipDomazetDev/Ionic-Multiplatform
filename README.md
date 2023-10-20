@@ -1,3 +1,5 @@
+# Ionic-Multiplatform
+
 This app has been developed using Ionic React as part of my Cross-Platform University course. It efficiently manages
 user profile data through Firebase integration and incorporates a Leaflet map for enhanced functionality.
 
