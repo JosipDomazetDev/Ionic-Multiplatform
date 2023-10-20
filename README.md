@@ -1,7 +1,8 @@
 # Ionic-Multiplatform
 
 This app has been developed using Ionic React as part of my Cross-Platform University course. It efficiently manages
-user profile data through Firebase integration and incorporates a Leaflet map for enhanced functionality.
+user profile data through Firebase integration and incorporates a Leaflet map for enhanced functionality. The map
+displays the live location of the ISS (International Space Station) and the user's location.
 
 <img src="docs/previewreadme.png" width=70% height=70%>
 
